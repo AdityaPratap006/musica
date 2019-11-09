@@ -10,5 +10,33 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+
+    .menu-item{
+        width:4rem;
+        height: 75%;
+        background: orange;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        img{
+            height:30px;
+        }
+    
+        p{
+            color: white;
+    
+            &.active{
+                text-decoration:underline;   
+            }
+        }
+    
+        &:hover{
+            p{
+                text-decoration:underline;   
+            }
+        }
+    }
    
 }
