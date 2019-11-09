@@ -4,6 +4,7 @@ import './sign-in.styles.scss';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 
+import { signInWithGoogle } from '../../firebase/firebase.utils';
 
 const SignIn = () => {
 
@@ -58,12 +59,8 @@ const SignIn = () => {
                     handleChange={handleChange}
                 />
 
-                <CustomButton 
-                    type="submit" 
-                    
-                >
-                    SIGN IN
-                </CustomButton>
+                <CustomButton type="submit" > SIGN IN </CustomButton>
+                <CustomButton onClick={signInWithGoogle}> SIGN IN WITH GOOGLE </CustomButton>
             </form>
             <h2>New here?</h2>
             <span>Go to Sign up and create an account</span>
