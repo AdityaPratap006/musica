@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import "./App.css";
 
@@ -8,6 +8,7 @@ import Navbar from "./components/navbar/navbar.component";
 import SignInAndSignUpPage from "./pages/signin-and-signup/signin-and-signup.page";
 
 import { auth } from "./firebase/firebase.utils";
+import AccountPage from "./pages/account/account.page";
 
 class App extends React.Component {
   constructor() {
@@ -38,7 +39,14 @@ class App extends React.Component {
         <Navbar currentUser={this.state.currentUser} />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/signin" component={SignInAndSignUpPage} />
+          <Route path='/account' render={() => (
+            this.state.currentUser?<AccountPage/>:<Redirect to='/'/>
+          )}/>
+          <Route path="/signin"  render={() => (
+            this.state.currentUser?<Redirect to='/'/>:<SignInAndSignUpPage/>
+          )}/>
+           
+          
         </Switch>
       </div>
     );
