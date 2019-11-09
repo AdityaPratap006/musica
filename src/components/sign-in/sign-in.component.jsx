@@ -9,18 +9,18 @@ import { signInWithGoogle } from '../../firebase/firebase.utils';
 const SignIn = () => {
 
     const [formData, setFormData] = useState({
-        email:'',
-        password:''
+        email: '',
+        password: ''
     });
-   
+
 
     const handleSubmit = event => {
         event.preventDefault();
-       
+
         setFormData({
             ...formData,
-            email:'',
-            password:''
+            email: '',
+            password: ''
         })
     }
 
@@ -30,41 +30,44 @@ const SignIn = () => {
 
         setFormData({
             ...formData,
-           [name]: value
+            [name]: value
         })
     }
 
-     
+
 
     return (
         <div className='sign-in'>
-            
+
             <form onSubmit={handleSubmit}>
-                <FormInput 
-                    name="email" 
+                <FormInput
+                    name="email"
                     type="email"
-                    label="Email" 
-                    value={formData.email} 
+                    label="Email"
+                    value={formData.email}
                     required
                     handleChange={handleChange}
                 />
-                 
 
-                <FormInput 
-                    name="password" 
+
+                <FormInput
+                    name="password"
                     type="password"
-                    label="Password" 
-                    value={formData.password} 
+                    label="Password"
+                    value={formData.password}
                     required
                     handleChange={handleChange}
                 />
 
-                <CustomButton type="submit" > SIGN IN </CustomButton>
-                <CustomButton onClick={signInWithGoogle}> SIGN IN WITH GOOGLE </CustomButton>
+                <div className='buttons'>
+                    <CustomButton type="submit" > SIGN IN </CustomButton>
+                    <CustomButton isGoogleSignIn onClick={signInWithGoogle}> SIGN IN WITH GOOGLE </CustomButton>
+                </div>
+
             </form>
-            <h2>New here?</h2>
+            <h2 className='title'>New here?</h2>
             <span>Go to Sign up and create an account</span>
-            
+
         </div>
     )
 }
