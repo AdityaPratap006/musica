@@ -3,4 +3,25 @@
     height: 75%;
     background: orange;
     margin-right: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img{
+        width:20px;
+    }
+
+    p{
+        color: white;
+
+        &.active{
+            text-decoration:underline;   
+        }
+    }
+
+    &:hover{
+        p{
+            text-decoration:underline;   
+        }
+    }
 }
