@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './sign-in.styles.scss';
 
 import FormInput from '../form-input/form-input.component';
+import CustomButton from '../custom-button/custom-button.component';
 
 
 const SignIn = () => {
@@ -36,8 +37,6 @@ const SignIn = () => {
 
     return (
         <div className='sign-in'>
-            <h2>New here?</h2>
-            <span>Sign up and create an account</span>
             
             <form onSubmit={handleSubmit}>
                 <FormInput 
@@ -59,11 +58,16 @@ const SignIn = () => {
                     handleChange={handleChange}
                 />
 
-                <input 
+                <CustomButton 
                     type="submit" 
-                    value="Sign In"
-                />
+                    
+                >
+                    SIGN IN
+                </CustomButton>
             </form>
+            <h2>New here?</h2>
+            <span>Go to Sign up and create an account</span>
+            
         </div>
     )
 }
