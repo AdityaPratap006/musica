@@ -9,6 +9,9 @@ import homeActive from '../../assets/home-active.png';
 import account from '../../assets/account.png';
 import accountActive from '../../assets/account-active.png';
 
+import { connect } from 'react-redux';
+
+
 const Navbar = ({ currentUser }) => {
 
     const [activeLink, setActiveLink] = useState(window.location.hash);
@@ -45,4 +48,12 @@ const Navbar = ({ currentUser }) => {
     )
 }
 
-export default Navbar;
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser
+})
+
+
+export default connect(
+    mapStateToProps,
+    null
+)(Navbar);
