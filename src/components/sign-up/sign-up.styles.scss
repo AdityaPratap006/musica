@@ -1,11 +1,12 @@
-.sign-in{
+.sign-up{
     width: 80vw;
     display: flex;
     flex-direction: column;
     
+     
     border-top: none;
-    
     padding:10px;
+    
     .title {
         margin:10px 0;
         text-align: center;
@@ -27,7 +28,7 @@
 }
 
 @media only screen and (min-width:660px){
-    .sign-in{
+    .sign-up{
         width:400px;
     }
 }

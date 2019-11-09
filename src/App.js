@@ -7,7 +7,7 @@ import HomePage from "./pages/home/home.page";
 import Navbar from "./components/navbar/navbar.component";
 import SignInAndSignUpPage from "./pages/signin-and-signup/signin-and-signup.page";
 
-import { auth } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import AccountPage from "./pages/account/account.page";
 
 class App extends React.Component {
@@ -22,10 +22,25 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        console.log(userAuth);
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              photoURL:userRef.photoURL,
+              ...snapShot.data()
+            }
+          });
+        });
+        
+      }
+
       this.setState({
-        currentUser: user
-      });
+        currentUser:null
+      })
     });
   }
 
@@ -39,14 +54,22 @@ class App extends React.Component {
         <Navbar currentUser={this.state.currentUser} />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path='/account' render={() => (
-            this.state.currentUser?<AccountPage/>:<Redirect to='/'/>
-          )}/>
-          <Route path="/signin"  render={() => (
-            this.state.currentUser?<Redirect to='/'/>:<SignInAndSignUpPage/>
-          )}/>
-           
-          
+          <Route
+            path="/account"
+            render={() =>
+              this.state.currentUser ? <AccountPage /> : <Redirect to="/" />
+            }
+          />
+          <Route
+            path="/signin"
+            render={() =>
+              this.state.currentUser ? (
+                <Redirect to="/" />
+              ) : (
+                <SignInAndSignUpPage />
+              )
+            }
+          />
         </Switch>
       </div>
     );

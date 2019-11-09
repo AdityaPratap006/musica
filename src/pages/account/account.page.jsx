@@ -5,6 +5,9 @@ import { auth } from '../../firebase/firebase.utils';
 import CustomButton from '../../components/custom-button/custom-button.component';
 
 const AccountPage = () => {
+    React.useEffect(()=>{
+        window.scrollTo(0,0)
+    })
     return (
         <div className='account-page'>
             

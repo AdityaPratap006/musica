@@ -8,3 +8,27 @@
     justify-content: flex-end;
     align-items: center;
 }
+
+
+::-webkit-scrollbar {
+    width: 6px;
+
+
+}
+
+::-webkit-scrollbar-track {
+    background: black;
+   
+
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #ba68c8;
+    border-radius: 10px;
+
+    &:hover {
+        background: #e1bee7;
+         
+    }
+}

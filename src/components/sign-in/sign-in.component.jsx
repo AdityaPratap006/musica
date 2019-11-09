@@ -66,7 +66,7 @@ const SignIn = () => {
 
             </form>
             <h2 className='title'>New here?</h2>
-            <span>Go to Sign up and create an account</span>
+            <span>Go to Sign up or Simply use Google Sign In!</span>
 
         </div>
     )
