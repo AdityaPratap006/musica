@@ -5,7 +5,7 @@ import storage from 'redux-persist/lib/storage';
 import userReducer from './user/user.reducer';
 
 
-const persistConfig = {
+const persistConfiguration = {
     key: 'root',
     storage,
     whitelist: []
@@ -15,4 +15,4 @@ const rootReducer = combineReducers({
     user: userReducer,
 });
 
-export default persistReducer(persistConfig, rootReducer);
+export default persistReducer(persistConfiguration, rootReducer);
