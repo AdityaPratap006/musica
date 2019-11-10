@@ -8,39 +8,37 @@ import Navbar from "./components/navbar/navbar.component";
 import SignInAndSignUpPage from "./pages/signin-and-signup/signin-and-signup.page";
 import AccountPage from "./pages/account/account.page";
 
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument /*, createSongsCollection*/ } from "./firebase/firebase.utils";
 
-import { connect } from 'react-redux';
-import { setCurrentUser, setAuthStateFetched } from './redux/user/user.actions';
+import { connect } from "react-redux";
+import { setCurrentUser, setAuthStateFetched } from "./redux/user/user.actions";
 
+//Not needed any more as we have moved the songs data in the firestore
+//import { songsList } from './songsData';
 
 class App extends React.Component {
- 
-
- unsubscribeFromAuth = null;
+  unsubscribeFromAuth = null;
 
   componentDidMount() {
-
-     
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
-         
+
         userRef.onSnapshot(snapShot => {
-
           this.props.setAuthStateFetched(true);
-         this.props.setCurrentUser({
-              id: snapShot.id,
-              photoURL:userAuth.photoURL,
-              ...snapShot.data()
+          this.props.setCurrentUser({
+            id: snapShot.id,
+            photoURL: userAuth.photoURL,
+            ...snapShot.data()
           });
-
         });
-        
       }
       this.props.setAuthStateFetched(true);
       this.props.setCurrentUser(null);
     });
+
+    //This was used to automate the  creation of songs collection in firestore 
+    //createSongsCollection(songsList);
   }
 
   componentWillUnmount() {
@@ -49,7 +47,6 @@ class App extends React.Component {
   }
 
   render() {
-
     const { currentUser } = this.props;
 
     return (
@@ -59,18 +56,12 @@ class App extends React.Component {
           <Route exact path="/" component={HomePage} />
           <Route
             path="/account"
-            render={() =>
-              currentUser ? <AccountPage /> : <Redirect to="/" />
-            }
+            render={() => (currentUser ? <AccountPage /> : <Redirect to="/" />)}
           />
           <Route
             path="/signin"
             render={() =>
-              currentUser ? (
-                <Redirect to="/" />
-              ) : (
-                <SignInAndSignUpPage />
-              )
+              currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />
             }
           />
         </Switch>
@@ -79,15 +70,15 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
-})
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+});
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
-  setAuthStateFetched: hasBeenFetched => dispatch(setAuthStateFetched(hasBeenFetched)),
-})
-
+  setAuthStateFetched: hasBeenFetched =>
+    dispatch(setAuthStateFetched(hasBeenFetched))
+});
 
 export default connect(
   mapStateToProps,
