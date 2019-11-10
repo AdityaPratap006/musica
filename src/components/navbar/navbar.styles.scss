@@ -1,3 +1,19 @@
+.musica-logo{
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    top:10px;
+    left:10px;
+    z-index: 120;
+}
+
+@media only screen and (min-width: 660px){
+
+    .musica-logo{
+        left:25px;
+    }
+}
+
 .navbar-component{
     width:100vw;
     max-width: 100%;
@@ -8,7 +24,7 @@
     z-index:100;
     top:0;
     display: flex;
-    justify-content:center;
+    justify-content:flex-end;
     align-items: center;
 
     .menu-item{

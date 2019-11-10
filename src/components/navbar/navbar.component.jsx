@@ -8,8 +8,11 @@ import home from '../../assets/home.png';
 import homeActive from '../../assets/home-active.png';
 import account from '../../assets/account.png';
 import accountActive from '../../assets/account-active.png';
+import logo from '../../assets/logo.png';
 
 import { connect } from 'react-redux';
+import CartIcon from '../cart-icon/cart-icon.component';
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
 
 const Navbar = ({ currentUser, authStateFetched }) => {
@@ -21,33 +24,40 @@ const Navbar = ({ currentUser, authStateFetched }) => {
     }, [currentUser])
 
     return (
-        <div className='navbar-component'>
-            <Link to='' className='menu-item' onClick={() => setActiveLink('#/')}>
-                {
-                    (activeLink === `#/`)
-                        ? (<img alt='menu-item' src={homeActive} />)
-                        : (<img alt='menu-item' src={home} />)
+        <React.Fragment>
+            <Link to="/" onClick={() => setActiveLink('#/')}>
+                <img alt='Logo' src={logo} className='musica-logo' />
+            </Link>
+            <div className='navbar-component'>
+                <Link to='' className='menu-item' onClick={() => setActiveLink('#/')}>
+                    {
+                        (activeLink === `#/`)
+                            ? (<img alt='menu-item' src={homeActive} />)
+                            : (<img alt='menu-item' src={home} />)
 
+
+                    }
+                </Link>
+                <CartIcon />
+                {
+                    authStateFetched ? (
+                        currentUser ?
+                            (<Link to='/account' className='menu-item' onClick={() => setActiveLink('#/account')}>
+                                {
+                                    (activeLink === `#/account`)
+                                        ? (<img alt='menu-item' src={accountActive} />)
+                                        : (<img alt='menu-item' src={account} />)
+
+
+                                }
+                            </Link>)
+                            : (<Link to='/signin' className='menu-item' onClick={() => setActiveLink('#/signin')}> <p className={`${(activeLink === `#/signin`) ? 'active' : ''}`}> SIGN IN </p></Link>)
+                    ) : null
 
                 }
-            </Link>
-            {
-                authStateFetched ? (
-                    currentUser ?
-                        (<Link to='/account' className='menu-item' onClick={() => setActiveLink('#/account')}>
-                            {
-                                (activeLink === `#/account`)
-                                    ? (<img alt='menu-item' src={accountActive} />)
-                                    : (<img alt='menu-item' src={account} />)
-
-
-                            }
-                        </Link>)
-                        : (<Link to='/signin' className='menu-item' onClick={() => setActiveLink('#/signin')}> <p className={`${(activeLink === `#/signin`) ? 'active' : ''}`}> SIGN IN </p></Link>)
-                ) : null
-
-            }
-        </div>
+            </div>
+            <CartDropdown/>
+        </React.Fragment>
     )
 }
 
