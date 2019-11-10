@@ -61,6 +61,26 @@ export const createSongsCollection = async songsArray => {
   return await batch.commit();
 };
 
+export const convertCollectionsSnapshotToMap = (collections) => {
+
+    const transformedCollection = collections.docs.map( doc => {
+    
+        return {
+            id: doc.id,
+            ...doc.data()
+        }
+    })
+
+    /*const transformedCollectionMap = transformedCollection.reduce( (accumulator, song) => {
+
+      accumulator[song.id] = song;
+      return accumulator;
+    },{})*/
+
+    //console.log('Collection', transformedCollection);
+    return transformedCollection;
+}
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 

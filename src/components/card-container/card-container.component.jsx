@@ -1,14 +1,24 @@
 import React from 'react';
 import './card-container.styles.scss';
 
-const CardContainer = () => {
+import { connect } from 'react-redux';
+
+
+const CardContainer = ({songsList}) => {
     return (
         <div className='card-container'>
             {
-               [1,2,3,4,5,6,7,8].map((x,index) => <div key={x} className='div'> {x} </div>)
+               songsList.map((song,index) => <div key={song.id} className='div'> {song.id} </div>)
             }
         </div>
     )
 }
 
-export default CardContainer;
+const mapStateToProps = state => ({
+    songsList: state.songs.songsList
+})
+
+export default connect(
+    mapStateToProps,
+    null
+)(CardContainer);

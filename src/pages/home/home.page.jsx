@@ -3,10 +3,13 @@ import './home.styles.scss';
 
 import CardContainer from '../../components/card-container/card-container.component';
 
+
 const HomePage = () => {
 
+    
+
     React.useEffect(()=>{
-        window.scrollTo(0,0)
+        window.scrollTo(0,0);
     })
 
     return (
