@@ -10,7 +10,7 @@ import songsReducer from './songs/songs.reducer';
 const persistConfiguration = {
     key: 'root',
     storage,
-    whitelist: []
+    whitelist: ['cart']
 }
 
 const rootReducer = combineReducers({
