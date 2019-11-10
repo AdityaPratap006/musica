@@ -85,7 +85,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
-  setAuthStateFetched: hasBeenFetched => dispatch(setAuthStateFetched(hasBeenFetched))
+  setAuthStateFetched: hasBeenFetched => dispatch(setAuthStateFetched(hasBeenFetched)),
 })
 
 
