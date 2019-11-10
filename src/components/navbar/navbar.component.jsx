@@ -63,7 +63,8 @@ const Navbar = ({ currentUser, authStateFetched }) => {
 
 const mapStateToProps = state => ({
     currentUser: state.user.currentUser,
-    authStateFetched: state.user.authStateFetched
+    authStateFetched: state.user.authStateFetched,
+    
 })
 
 
