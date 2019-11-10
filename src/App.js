@@ -11,7 +11,7 @@ import AccountPage from "./pages/account/account.page";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 import { connect } from 'react-redux';
-import { setCurrentUser } from './redux/user/user.actions';
+import { setCurrentUser, setAuthStateFetched } from './redux/user/user.actions';
 
 
 class App extends React.Component {
@@ -20,12 +20,15 @@ class App extends React.Component {
  unsubscribeFromAuth = null;
 
   componentDidMount() {
+
+     
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
          
         userRef.onSnapshot(snapShot => {
 
+          this.props.setAuthStateFetched(true);
          this.props.setCurrentUser({
               id: snapShot.id,
               photoURL:userAuth.photoURL,
@@ -35,13 +38,14 @@ class App extends React.Component {
         });
         
       }
-
+      this.props.setAuthStateFetched(true);
       this.props.setCurrentUser(null);
     });
   }
 
   componentWillUnmount() {
     this.unsubscribeFromAuth();
+    this.props.setAuthStateFetched(false);
   }
 
   render() {
@@ -81,6 +85,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
+  setAuthStateFetched: hasBeenFetched => dispatch(setAuthStateFetched(hasBeenFetched))
 })
 
 
