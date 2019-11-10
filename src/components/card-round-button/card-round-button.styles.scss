@@ -1,0 +1,45 @@
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+
+.round-button{
+
+    width:36px;
+    height:36px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .arrow-right {
+        width: 0; 
+        height: 0; 
+        margin-left: 10%;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        
+        border-left: 10px solid black;
+    }
+
+    &:hover{
+        background: #000;
+        border: 2px solid white;
+        cursor: pointer;
+        .arrow-right{
+            border-left: 10px solid white;
+        }
+    }
+      
+}
+
+.heart{
+
+    width:36px;
+    &.like{
+        fill:red;
+    }
+
+    &.unlike{
+        fill:white;
+    }
+}

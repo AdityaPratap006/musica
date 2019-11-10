@@ -3,12 +3,14 @@ import './card-container.styles.scss';
 
 import { connect } from 'react-redux';
 
+import Card from '../card/card.component';
+
 
 const CardContainer = ({songsList}) => {
     return (
         <div className='card-container'>
             {
-               songsList.map((song,index) => <div key={song.id} className='div'> {song.id} </div>)
+               songsList.map((songObj,index) => <Card key={songObj.id} songObject={songObj}/>)
             }
         </div>
     )

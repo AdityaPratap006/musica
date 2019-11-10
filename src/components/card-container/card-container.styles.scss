@@ -9,18 +9,9 @@
     grid-template-rows: repeat(auto-fit, minmax(240px, 1fr));
     justify-items: center;
     align-items: center;
-    // overflow-y: scroll;
+     
 
-    .div {
-        width: 96%;
-        max-height: 96%;
-        height: 300px;
-        
-        border-radius: 20px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
-       
- 
-    }
+    
 }
 
 @media only screen and (min-width:768px) {
