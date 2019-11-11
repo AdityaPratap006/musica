@@ -14,7 +14,6 @@ import { connect } from 'react-redux';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
-import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser, selectAuthStateFetched } from '../../redux/user/user.selectors';
 
 const Navbar = ({ currentUser, authStateFetched }) => {

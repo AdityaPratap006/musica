@@ -2,7 +2,7 @@ import { SET_CURRENT_USER, SET_AUTH_STATE_FETCHED } from "./user.types";
 
 const INITIAL_STATE = {
   currentUser: null,
-  authStateFetched:false
+  authStateFetched:true
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {

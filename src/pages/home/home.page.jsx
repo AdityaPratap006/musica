@@ -4,19 +4,13 @@ import './home.styles.scss';
 import CardContainer from '../../components/card-container/card-container.component';
 
 
-const HomePage = () => {
-
-    
-
-    React.useEffect(()=>{
-        window.scrollTo(0,0);
-    })
+const HomePage = () =>  {
 
     return (
-        <div className='home-page'>
-            <CardContainer/>
-        </div>
-    )
+            <div className='home-page'>
+                <CardContainer />
+            </div>
+     )
 }
 
 export default HomePage;

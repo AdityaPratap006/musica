@@ -7,6 +7,8 @@ import HomePage from "./pages/home/home.page";
 import Navbar from "./components/navbar/navbar.component";
 import SignInAndSignUpPage from "./pages/signin-and-signup/signin-and-signup.page";
 import AccountPage from "./pages/account/account.page";
+import CheckoutPage from "./pages/checkout/checkout.page";
+
 
 import {
   auth,
@@ -19,7 +21,8 @@ import { setCurrentUser, setAuthStateFetched } from "./redux/user/user.actions";
 //Not needed any more as we have moved the songs data in the firestore
 //import { songsList } from './songsData';
 
-import { firestore, convertCollectionsSnapshotToMap } from "./firebase/firebase.utils";
+import { firestore, convertCollectionsSnapshotToMap } from './firebase/firebase.utils';
+
 import { updateSongCollection } from './redux/songs/songs.actions';
 
 import { selectCurrentUser } from './redux/user/user.selectors';
@@ -30,40 +33,43 @@ class App extends React.Component {
 
   componentDidMount() {
     //Authenticating user
+    
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot(snapShot => {
-          this.props.setAuthStateFetched(true);
+           
           this.props.setCurrentUser({
             id: snapShot.id,
             photoURL: userAuth.photoURL,
             ...snapShot.data()
           });
+          this.props.setAuthStateFetched(true)
         });
       }
-      this.props.setAuthStateFetched(true);
-      this.props.setCurrentUser(null);
+      else{
+        this.props.setCurrentUser(userAuth);
+      }
+       
+      
     });
 
     //This was used to automate the  creation of songs collection in firestore
     //createSongsCollection(songsList);
-
     const songsCollectionRef = firestore.collection("songs");
 
-    songsCollectionRef.onSnapshot(async snapshot => {
+        this.unsubscribeFromSnapshot = songsCollectionRef.onSnapshot(async snapshot => {
+    
+            const songsList = convertCollectionsSnapshotToMap(snapshot);
+    
+            this.props.updateSongCollection(songsList);
+        })
 
-        const songsList = convertCollectionsSnapshotToMap(snapshot);
-
-        this.props.updateSongCollection(songsList);
-    })
   }
 
   componentWillUnmount() {
     this.unsubscribeFromAuth();
-    //this.unsubscribeFromSnapshot();
-    this.props.setAuthStateFetched(false);
   }
 
   render() {
@@ -75,13 +81,22 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route
+            exact
             path="/account"
             render={() => (currentUser ? <AccountPage /> : <Redirect to="/" />)}
           />
           <Route
+            exact
             path="/signin"
             render={() =>
               currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />
+            }
+          />
+          <Route
+            exact
+            path="/checkout"
+            render={() =>
+              !currentUser ? <Redirect to="/" /> : <CheckoutPage/>
             }
           />
         </Switch>

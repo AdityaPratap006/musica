@@ -23,7 +23,7 @@ const CartDropdown = ({ currentUser, hidden, toggleCartHidden, cartItems }) => {
                     {   
                         cartItems.length
                         ?cartItems.map(item => <CartItem key={item.id} item={item} />)
-                        :<span>Cart is empty :(</span>
+                        :<p>Cart is empty <span role="img" aria-label="Sad Emoji"> &#128532; </span> </p>
                     }
                 </div>
                 <CustomButton>
