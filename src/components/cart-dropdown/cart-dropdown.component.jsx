@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { toggleCartHidden } from '../../redux/cart/cart.actions';
 import CartItem from '../cart-item/cart-item.component';
 
+import { selectCartItems } from '../../redux/cart/cart.selectors';
+
 const CartDropdown = ({ currentUser, hidden, toggleCartHidden, cartItems }) => {
     return (
         !hidden ?
@@ -36,7 +38,7 @@ const CartDropdown = ({ currentUser, hidden, toggleCartHidden, cartItems }) => {
 const mapStateToProps = state => ({
     currentUser: state.user.currentUser,
     hidden: state.cart.hidden,
-    cartItems: state.cart.cartItems
+    cartItems: selectCartItems(state)
 })
 
 const mapDispatchToProps = dispatch => ({
