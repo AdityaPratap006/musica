@@ -47,9 +47,30 @@
     font-size: 36px;
     color: white;
   }
+
+  .payment{
+      width: 50vw;
+      height:150px;
+      padding:10px 5px;
+      background: #fff;
+      border-radius: 20px;
+      margin:10px 0 40px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      
+      p{
+          font-size: 1.2rem;
+          color:red;
+          text-align: left;
+          max-width: 80%;
+          margin:5px;
+      }
+  }
 }
 
-@media only screen and (max-width:660px){
+@media only screen and (max-width:880px){
     .checkout-page{
         width:90vw;
 
@@ -61,6 +82,11 @@
 
         .total{
             font-size: 2rem;
+        }
+
+        .payment{
+            width: 90vw;
+            height: 200px;
         }
     }
 }

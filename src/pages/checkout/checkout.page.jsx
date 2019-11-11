@@ -5,8 +5,16 @@ import { connect } from 'react-redux';
 import { selectCartItems, selectTotalPrice } from '../../redux/cart/cart.selectors';
 
 import CheckoutItem from '../../components/checkout-item/checkout-item.component';
+import StripeCheckoutButton from '../../components/stripe-button/stripe-button.component';
+
+
 
 const CheckoutPage = ({ cartItems, total }) => {
+
+    React.useEffect(() => {
+        window.scrollTo(0, 0);
+    })
+
     return (
         <div className='checkout-page'>
             <div className='checkout-header'>
@@ -21,12 +29,23 @@ const CheckoutPage = ({ cartItems, total }) => {
                 </div>
             </div>
             <div className='checkout-body'>
-            {
-                 cartItems.map(cartItem => <CheckoutItem item={cartItem} /> )
-            }
+                {
+                    cartItems.map(cartItem => <CheckoutItem item={cartItem} />)
+                }
             </div>
-            
+
             <div className='total'>  ₹ {total}</div>
+            <div className='payment'>
+                <StripeCheckoutButton price={total} />
+                <p>
+                    Please use the following test credit card for payment:
+                </p>
+                <p>
+                    4242 4242 4242 4242 - Exp: 01/20 - CVV: 123
+                </p>
+
+            </div>
+
         </div>
     )
 }

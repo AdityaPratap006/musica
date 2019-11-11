@@ -11,7 +11,7 @@ import { selectCurrentUser } from '../../redux/user/user.selectors';
 
 import { withRouter } from 'react-router-dom';
 
-const CartDropdown = ({ currentUser, hidden, toggleCartHidden, cartItems, history }) => {
+const CartDropdown = ({ currentUser, hidden, toggleCartHidden, cartItems, history, onClick }) => {
     
     const handleClick = ()=>{
         if(currentUser){
@@ -20,7 +20,8 @@ const CartDropdown = ({ currentUser, hidden, toggleCartHidden, cartItems, histor
             history.push('/signin')
         }
 
-        toggleCartHidden()
+        toggleCartHidden();
+        onClick();
     }
     
     return (

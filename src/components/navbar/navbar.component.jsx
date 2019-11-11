@@ -39,7 +39,7 @@ const Navbar = ({ currentUser, authStateFetched }) => {
 
                     }
                 </Link>
-                <CartIcon />
+                <CartIcon/>
                 {
                     authStateFetched ? (
                         currentUser ?
@@ -59,7 +59,7 @@ const Navbar = ({ currentUser, authStateFetched }) => {
 
                 }
             </div>
-            <CartDropdown/>
+            <CartDropdown  onClick={() => setActiveLink('#/checkout')}  />
         </React.Fragment>
     )
 }
