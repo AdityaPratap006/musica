@@ -1,5 +1,5 @@
 .cart-dropdown {
-  position: absolute;
+  position: fixed;
   width: 240px;
   height: 340px;
   display: flex;
@@ -58,5 +58,12 @@
 
   &:hover {
     background: #e1bee7;
+  }
+}
+
+@media only screen and (min-width:660px){
+  .cart-dropdown{
+    width:330px;
+    height: 380px;
   }
 }

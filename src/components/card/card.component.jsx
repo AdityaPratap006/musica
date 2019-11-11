@@ -7,22 +7,22 @@ import CardRoundButton from '../card-round-button/card-round-button.component';
 
 const Card = ({ songObject, addCartItem, removeCartItem, cartItems }) => {
 
-    const { id, song, artists, cover_image, url, price } = songObject;
+    const { id, song, artists, cover_image, price } = songObject;
 
-    const isLiked = cartItems.find( song => song.id === id);
+    const isLiked = cartItems.find(song => song.id === id);
 
     const handleLike = () => {
 
-        if(!isLiked){
+        if (!isLiked) {
             addCartItem(songObject);
-        }else{
+        } else {
             removeCartItem(songObject);
         }
     }
 
     return (
         <div className='card'>
-             <div className='image'
+            <div className='image'
                 style={{
                     backgroundImage: `url(${cover_image})`
                 }}
@@ -30,18 +30,22 @@ const Card = ({ songObject, addCartItem, removeCartItem, cartItems }) => {
 
             <div className='card-body'>
                 <h4>{song}</h4>
-                 
+
                 <span>{artists}</span>
             </div>
             <div className='card-footer'>
                 <span>{`₹ ${price}`}</span>
             </div>
-            <div className='play-button'>
-                <CardRoundButton type='PLAY'/>
+            <div className='button-background'>
+                <div className='play-button'>
+                    <CardRoundButton type='PLAY' />
+                     
+                </div>
+                <div className='like-unlike-button' onClick={handleLike}>
+                    <CardRoundButton type={isLiked ? 'LIKE' : 'UNLIKE'} />
+                </div>
             </div>
-            <div className='like-unlike-button' onClick={handleLike}>
-                <CardRoundButton type={isLiked?'LIKE':'UNLIKE'} />
-            </div>
+
         </div>
     )
 }

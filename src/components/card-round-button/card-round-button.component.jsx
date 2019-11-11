@@ -2,7 +2,7 @@ import React from 'react';
 import './card-round-button.styles.scss'
 
 
-const CardRoundButton = ({ type }) => {
+const CardRoundButton = ({ type, children, hasTooltipChild }) => {
 
     switch (type) {
         case 'PLAY':
@@ -11,6 +11,9 @@ const CardRoundButton = ({ type }) => {
                     <div className='arrow-right'>
 
                     </div>
+                    {
+                        (hasTooltipChild)?children:null
+                    }
                 </div>
             )
         
