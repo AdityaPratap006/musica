@@ -9,7 +9,20 @@ import CartItem from '../cart-item/cart-item.component';
 import { selectCartItems, selectCartHidden } from '../../redux/cart/cart.selectors';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 
-const CartDropdown = ({ currentUser, hidden, toggleCartHidden, cartItems }) => {
+import { withRouter } from 'react-router-dom';
+
+const CartDropdown = ({ currentUser, hidden, toggleCartHidden, cartItems, history }) => {
+    
+    const handleClick = ()=>{
+        if(currentUser){
+            history.push('/checkout')
+        }else{
+            history.push('/signin')
+        }
+
+        toggleCartHidden()
+    }
+    
     return (
         !hidden ?
             <div className='cart-dropdown'>
@@ -26,7 +39,7 @@ const CartDropdown = ({ currentUser, hidden, toggleCartHidden, cartItems }) => {
                         :<p>Cart is empty <span role="img" aria-label="Sad Emoji"> &#128532; </span> </p>
                     }
                 </div>
-                <CustomButton>
+                <CustomButton onClick={handleClick}>
                     {
                         currentUser ? 'CHECKOUT' : 'SIGN IN TO CHECKOUT'
                     }
@@ -47,7 +60,9 @@ const mapDispatchToProps = dispatch => ({
 })
 
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(CartDropdown);
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(CartDropdown)
+);
