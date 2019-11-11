@@ -4,6 +4,7 @@ import './card-container.styles.scss';
 import { connect } from 'react-redux';
 
 import Card from '../card/card.component';
+import { selectSongsList } from '../../redux/songs/songs.selectors';
 
 
 const CardContainer = ({songsList}) => {
@@ -17,7 +18,7 @@ const CardContainer = ({songsList}) => {
 }
 
 const mapStateToProps = state => ({
-    songsList: state.songs.songsList
+    songsList: selectSongsList(state)
 })
 
 export default connect(

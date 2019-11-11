@@ -53,8 +53,28 @@
                 text-decoration:underline;   
             }
         }
+
+        .loading{
+            width:36px;
+            height: 36px;
+            border:4px solid #fff;
+            border-top: 4px solid #999;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
     }
    
+}
+
+@keyframes spin{
+
+   0%{
+        transform: rotate(0deg);
+    }
+
+    100%{
+        transform: rotate(360deg);
+    }
 }
 
 @media only screen and (min-width:660px){

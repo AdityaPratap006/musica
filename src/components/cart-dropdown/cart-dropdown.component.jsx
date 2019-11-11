@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 import { toggleCartHidden } from '../../redux/cart/cart.actions';
 import CartItem from '../cart-item/cart-item.component';
 
-import { selectCartItems } from '../../redux/cart/cart.selectors';
+import { selectCartItems, selectCartHidden } from '../../redux/cart/cart.selectors';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
 
 const CartDropdown = ({ currentUser, hidden, toggleCartHidden, cartItems }) => {
     return (
@@ -36,8 +37,8 @@ const CartDropdown = ({ currentUser, hidden, toggleCartHidden, cartItems }) => {
 }
 
 const mapStateToProps = state => ({
-    currentUser: state.user.currentUser,
-    hidden: state.cart.hidden,
+    currentUser: selectCurrentUser(state),
+    hidden: selectCartHidden(state),
     cartItems: selectCartItems(state)
 })
 

@@ -22,6 +22,8 @@ import { setCurrentUser, setAuthStateFetched } from "./redux/user/user.actions";
 import { firestore, convertCollectionsSnapshotToMap } from "./firebase/firebase.utils";
 import { updateSongCollection } from './redux/songs/songs.actions';
 
+import { selectCurrentUser } from './redux/user/user.selectors';
+
 class App extends React.Component {
   unsubscribeFromAuth = null;
   unsubscribeFromSnapshot = null;
@@ -89,7 +91,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.user.currentUser,
+  currentUser: selectCurrentUser(state),
 });
 
 const mapDispatchToProps = dispatch => ({

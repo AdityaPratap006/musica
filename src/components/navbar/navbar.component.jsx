@@ -14,6 +14,8 @@ import { connect } from 'react-redux';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser, selectAuthStateFetched } from '../../redux/user/user.selectors';
 
 const Navbar = ({ currentUser, authStateFetched }) => {
 
@@ -52,7 +54,9 @@ const Navbar = ({ currentUser, authStateFetched }) => {
                                 }
                             </Link>)
                             : (<Link to='/signin' className='menu-item' onClick={() => setActiveLink('#/signin')}> <p className={`${(activeLink === `#/signin`) ? 'active' : ''}`}> SIGN IN </p></Link>)
-                    ) : null
+                    ) : <div className='menu-item'>
+                            <div className='loading'/>
+                        </div>
 
                 }
             </div>
@@ -62,8 +66,8 @@ const Navbar = ({ currentUser, authStateFetched }) => {
 }
 
 const mapStateToProps = state => ({
-    currentUser: state.user.currentUser,
-    authStateFetched: state.user.authStateFetched,
+    currentUser: selectCurrentUser(state),
+    authStateFetched: selectAuthStateFetched(state),
     
 })
 

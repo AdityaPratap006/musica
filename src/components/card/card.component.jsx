@@ -4,6 +4,7 @@ import './card.styles.scss';
 import { connect } from 'react-redux';
 import { addCartItem, removeCartItem } from '../../redux/cart/cart.actions';
 import CardRoundButton from '../card-round-button/card-round-button.component';
+import { selectCartItems } from '../../redux/cart/cart.selectors';
 
 const Card = ({ songObject, addCartItem, removeCartItem, cartItems }) => {
 
@@ -51,7 +52,7 @@ const Card = ({ songObject, addCartItem, removeCartItem, cartItems }) => {
 }
 
 const mapStateToProps = (state) => ({
-    cartItems: state.cart.cartItems
+    cartItems: selectCartItems(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({
