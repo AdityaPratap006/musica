@@ -13,8 +13,21 @@
   right: 40px;
   z-index: 120;
 
-  .close-btn {
-      margin:0 0 0 auto;
+  .header{
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    span{
+      flex: 1;
+      margin-left: 25px;
+      text-align: center;
+      text-decoration: underline;
+    }
+    .close-btn {
+       
       height: 2rem;
       width:2rem;
       border-radius: 50%;
@@ -27,14 +40,20 @@
 
       &:hover{
           cursor: pointer;
-          background: #aaa;
+          background: red;
+          color:white;
       }
   }
 
+  }
+
+  
   .cart-items {
     height: 240px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     overflow-y: scroll;
   }
 
