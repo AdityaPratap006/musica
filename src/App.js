@@ -24,6 +24,7 @@ import { setCurrentUser, setAuthStateFetched } from "./redux/user/user.actions";
 import { firestore, convertCollectionsSnapshotToMap } from './firebase/firebase.utils';
 
 import { updateSongCollection } from './redux/songs/songs.actions';
+import { removeCartItem } from "./redux/cart/cart.actions";
 
 import { selectCurrentUser } from './redux/user/user.selectors';
 
@@ -45,11 +46,16 @@ class App extends React.Component {
             photoURL: userAuth.photoURL,
             ...snapShot.data()
           });
-          this.props.setAuthStateFetched(true)
+          this.props.setAuthStateFetched(true);
+
+          snapShot.data().purchaseList && snapShot.data().purchaseList.forEach(purchasedSongID => {
+
+            this.props.removeCartItem({id:purchasedSongID})
+          })
         });
       }
       else{
-        this.props.setCurrentUser(userAuth);
+        this.props.setCurrentUser(null);
       }
        
       
@@ -70,6 +76,7 @@ class App extends React.Component {
 
   componentWillUnmount() {
     this.unsubscribeFromAuth();
+    this.unsubscribeFromSnapshot();
   }
 
   render() {
@@ -112,7 +119,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
   setAuthStateFetched: hasBeenFetched => dispatch(setAuthStateFetched(hasBeenFetched)),
-  updateSongCollection: songs => dispatch(updateSongCollection(songs))
+  updateSongCollection: songs => dispatch(updateSongCollection(songs)),
+  removeCartItem: song => dispatch(removeCartItem(song))
 });
 
 export default connect(

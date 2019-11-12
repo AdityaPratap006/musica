@@ -26,12 +26,13 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!snapShot.exists) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
-
+    const purchaseList = ["NOTHING"];
     try {
       await userRef.set({
         displayName,
         email,
         createdAt,
+        purchaseList,
         ...additionalData
       });
     } catch (error) {
@@ -51,41 +52,57 @@ export const createSongsCollection = async songsArray => {
   songsArray.forEach(songObj => {
     const newSongDocRef = songsCollectionRef.doc();
     const randomNum = Math.random() * 60;
-    const cost = Math.round(randomNum) * 10;//generating random prices as per the instruction
+    const cost = Math.round(randomNum) * 10; //generating random prices as per the instruction
     batch.set(newSongDocRef, {
       ...songObj,
-      price: cost>=200? cost : 200
+      price: cost >= 200 ? cost : 200
     });
   });
 
   return await batch.commit();
 };
 
-export const convertCollectionsSnapshotToMap = (collections) => {
+export const convertCollectionsSnapshotToMap = collections => {
+  const transformedCollection = collections.docs.map(doc => {
+    return {
+      id: doc.id,
+      ...doc.data()
+    };
+  });
 
-    const transformedCollection = collections.docs.map( doc => {
-    
-        return {
-            id: doc.id,
-            ...doc.data()
-        }
-    })
-
-    /*const transformedCollectionMap = transformedCollection.reduce( (accumulator, song) => {
+  /*const transformedCollectionMap = transformedCollection.reduce( (accumulator, song) => {
 
       accumulator[song.id] = song;
       return accumulator;
     },{})*/
 
-    //console.log('Collection', transformedCollection);
-    return transformedCollection;
-}
+  //console.log('Collection', transformedCollection);
+  return transformedCollection;
+};
+
+export const addToUserPurchaseList = async (userId, songList) => {
+  const userRef = firestore.doc(`users/${userId}`);
+
+  const songIdList = songList.map(song => song.id);
+
+  return userRef
+    .update({
+      purchaseList: firebase.firestore.FieldValue.arrayUnion(...songIdList)
+    })
+    .then(() => {
+      alert(`Yippeee!!! Payment Successful!`);
+    })
+    
+};
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const signInWithGoogle = () => {
+  window.localStorage.clear()
+  auth.signInWithPopup(provider)
+};
 
 export default firebase;

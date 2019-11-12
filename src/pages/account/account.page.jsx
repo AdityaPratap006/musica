@@ -8,16 +8,19 @@ import { connect } from 'react-redux';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { setCurrentUser, setAuthStateFetched } from '../../redux/user/user.actions';
 
-const AccountPage = ({currentUser, setCurrentUser}) => {
+const AccountPage = ({currentUser, setCurrentUser, history}) => {
     React.useEffect(()=>{
         window.scrollTo(0,0)
     })
     return (
         currentUser?
         (<div className='account-page'>
-            <h1>HI {currentUser.displayName}</h1>
+            <h1>Hi {currentUser.displayName}</h1>
            <CustomButton onClick={()=>{
-               auth.signOut()
+               auth.signOut();
+               console.log(auth.signOut)
+              window.localStorage.clear()
+
             }}>LOG OUT</CustomButton>
         </div>)
         :(<div className='account-page'>

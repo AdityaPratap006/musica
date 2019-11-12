@@ -30,13 +30,16 @@ const CheckoutPage = ({ cartItems, total }) => {
             </div>
             <div className='checkout-body'>
                 {
-                    cartItems.map(cartItem => <CheckoutItem item={cartItem} />)
+                    cartItems.map(cartItem => <CheckoutItem key={cartItem.id} item={cartItem} />)
                 }
             </div>
 
             <div className='total'>  ₹ {total}</div>
-            <div className='payment'>
-                <StripeCheckoutButton price={total} />
+            <div className='payment' style={{
+               
+                opacity:total>0?1:0.7
+            }}>
+                <StripeCheckoutButton  price={total} />
                 <p>
                     Please use the following test credit card for payment:
                 </p>

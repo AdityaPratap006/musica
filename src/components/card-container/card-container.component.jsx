@@ -9,11 +9,13 @@ import { selectSongsList } from '../../redux/songs/songs.selectors';
 
 const CardContainer = ({songsList}) => {
     return (
+        songsList.length?
         <div className='card-container'>
             {
                songsList.map((songObj,index) => <Card key={songObj.id} songObject={songObj}/>)
             }
         </div>
+        :<div style={{margin:'auto'}}>LOADING...</div>
     )
 }
 

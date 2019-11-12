@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 import { addCartItem, removeCartItem } from '../../redux/cart/cart.actions';
 import CardRoundButton from '../card-round-button/card-round-button.component';
 import { selectCartItems } from '../../redux/cart/cart.selectors';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
 
-const Card = ({ songObject, addCartItem, removeCartItem, cartItems }) => {
+const Card = ({ songObject, addCartItem, removeCartItem, cartItems, currentUser }) => {
 
     const { id, song, artists, cover_image, price } = songObject;
 
@@ -21,6 +22,9 @@ const Card = ({ songObject, addCartItem, removeCartItem, cartItems }) => {
         }
     }
 
+    const isPurchased = currentUser && currentUser.purchaseList && currentUser.purchaseList.includes(id);
+
+     
     return (
         <div className='card'>
             <div className='image'
@@ -40,11 +44,17 @@ const Card = ({ songObject, addCartItem, removeCartItem, cartItems }) => {
             <div className='button-background'>
                 <div className='play-button'>
                     <CardRoundButton type='PLAY' />
-                     
+
                 </div>
-                <div className='like-unlike-button' onClick={handleLike}>
-                    <CardRoundButton type={isLiked ? 'LIKE' : 'UNLIKE'} />
-                </div>
+                {
+                    !isPurchased?
+                    (<div className='like-unlike-button' onClick={handleLike}>
+                        <CardRoundButton type={isLiked ? 'LIKE' : 'UNLIKE'} />
+                    </div>)
+                    :(<div className='play-button' >
+                        PUR
+                    </div>)
+                }
             </div>
 
         </div>
@@ -52,7 +62,8 @@ const Card = ({ songObject, addCartItem, removeCartItem, cartItems }) => {
 }
 
 const mapStateToProps = (state) => ({
-    cartItems: selectCartItems(state)
+    cartItems: selectCartItems(state),
+    currentUser: selectCurrentUser(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({
