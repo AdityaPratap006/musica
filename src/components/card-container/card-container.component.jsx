@@ -12,7 +12,7 @@ const CardContainer = ({songsList}) => {
         songsList.length?
         <div className='card-container'>
             {
-               songsList.map((songObj,index) => <Card key={songObj.id} songObject={songObj}/>)
+               songsList.map((songObj,index) => <Card key={songObj.id} index={index} songObject={songObj}/>)
             }
         </div>
         :<div style={{margin:'auto'}}>LOADING...</div>

@@ -27,6 +27,7 @@ import { updateSongCollection } from './redux/songs/songs.actions';
 import { removeCartItem } from "./redux/cart/cart.actions";
 
 import { selectCurrentUser } from './redux/user/user.selectors';
+// import { selectCurrentTrack } from "./redux/current-track/current-track.selectors";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -83,7 +84,7 @@ class App extends React.Component {
     const { currentUser } = this.props;
 
     return (
-      <div className="App">
+      <div className={`App`}>
         <Navbar />
         <Switch>
           <Route exact path="/" component={HomePage} />
@@ -114,6 +115,7 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({
   currentUser: selectCurrentUser(state),
+  //currentTrack: selectCurrentTrack(state),
 });
 
 const mapDispatchToProps = dispatch => ({

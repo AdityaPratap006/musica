@@ -7,6 +7,10 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
+
+    &.expand-bottom{
+        padding-bottom: 18rem;
+    }
 }
 
 

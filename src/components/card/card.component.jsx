@@ -6,8 +6,9 @@ import { addCartItem, removeCartItem } from '../../redux/cart/cart.actions';
 import CardRoundButton from '../card-round-button/card-round-button.component';
 import { selectCartItems } from '../../redux/cart/cart.selectors';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { setCurrentTrack } from '../../redux/current-track/current-track.actions';
 
-const Card = ({ songObject, addCartItem, removeCartItem, cartItems, currentUser }) => {
+const Card = ({ songObject, index , addCartItem, removeCartItem, cartItems, currentUser, setCurrentTrack }) => {
 
     const { id, song, artists, cover_image, price } = songObject;
 
@@ -42,7 +43,7 @@ const Card = ({ songObject, addCartItem, removeCartItem, cartItems, currentUser 
                 <span>{`₹ ${price}`}</span>
             </div>
             <div className='button-background'>
-                <div className='play-button'>
+                <div className='play-button' onClick={()=>{setCurrentTrack(index)}}>
                     <CardRoundButton type='PLAY' />
 
                 </div>
@@ -68,7 +69,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     addCartItem: songObj => dispatch(addCartItem(songObj)),
-    removeCartItem: songObj => dispatch(removeCartItem(songObj))
+    removeCartItem: songObj => dispatch(removeCartItem(songObj)),
+    setCurrentTrack: songIndex => dispatch(setCurrentTrack(songIndex))
 })
 
 
