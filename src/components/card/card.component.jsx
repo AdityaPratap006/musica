@@ -51,8 +51,8 @@ const Card = ({ songObject, addCartItem, removeCartItem, cartItems, currentUser 
                     (<div className='like-unlike-button' onClick={handleLike}>
                         <CardRoundButton type={isLiked ? 'LIKE' : 'UNLIKE'} />
                     </div>)
-                    :(<div className='play-button' >
-                        PUR
+                    :(<div className='purchsed-marker' >
+                        PURCHASED!
                     </div>)
                 }
             </div>
