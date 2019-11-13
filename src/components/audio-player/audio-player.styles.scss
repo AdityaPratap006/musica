@@ -179,13 +179,15 @@
       }
       
       .volume-control{
-        width:36%;
+        width:100%;
         display: flex;
+        justify-content: flex-start;
+        align-items: center;
 
         input[type="range"] {
             -webkit-appearance: none;
             background: transparent;
-            width: 100%;
+            width: 40%;
             margin: 0 5px;
             
           }
@@ -237,9 +239,17 @@
             background: #834d9b;
             cursor: pointer;
           }
+          
+            p{
+              margin-left: auto; 
+            
+            padding: 0 10px;
+            letter-spacing: 3px;
+          }
+         
+        
       }
-
-      
+     
     }
   }
 }
@@ -259,10 +269,10 @@
 
       flex-direction: column;
       padding: 10px 8px;
-
+      justify-content: space-between;
       .main-panel {
         width: 100%;
-        height: 70%;
+        height:40%;
 
         display: flex;
         flex-direction: row;
@@ -275,8 +285,13 @@
             height: auto;
             visibility: hidden;
           }
-          p,small{
+          p{
             visibility: visible;
+            font-size: 1rem;
+          }
+          small{
+            visibility: visible;
+            font-size: 0.8rem;
           }
         }
 
@@ -285,27 +300,39 @@
           height: 100%;
         justify-content: flex-start;
           .play-pause-button {
-            width: 75px;
-            height: 75px;
+            width: 70px;
+            height: 70px;
             font-size: 1.5rem;
             margin:0 10px;
           }
           .transit-button{
+            width: 50px;
+            height: 50px;
               font-size: 1.1rem;
           }
         }
       }
-
+     
       .progress-container {
         width: 100%;
-        height: 30%;
-         
+        height: 40%;
+     
         //background: blue;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: flex-start;
 
+        .progress{
+          height: 30%;
+        }
+
+        .volume-control{
+          height: 50%;
+          p{
+            letter-spacing: 1.2px;
+          }
+        }
         
       }
     }

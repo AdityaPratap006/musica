@@ -18,7 +18,7 @@ const AudioPlayer = ({ songList, currentTrack, setCurrentTrack }) => {
 
 
 
-    let audio = null, progress = null, progressBar = null, playButton = null, volume = null;
+    let audio = null, progress = null, progressBar = null, playButton = null, timer = null; 
 
 
 
@@ -29,7 +29,8 @@ const AudioPlayer = ({ songList, currentTrack, setCurrentTrack }) => {
 
     const updateButton = () => {
         const icon = !audio.paused ? '❚ ❚' : '▶';
-        playButton.textContent = icon
+        playButton.textContent = icon;
+
 
     }
 
@@ -46,6 +47,8 @@ const AudioPlayer = ({ songList, currentTrack, setCurrentTrack }) => {
         const percent = (audio.currentTime / audio.duration) * 100;
 
         progressBar.style.flexBasis = `${percent}%`;
+        timer.textContent = audio.duration ? `${Math.round(audio.currentTime/60)} : ${Math.round(audio.currentTime%60) > 9 ? Math.round(audio.currentTime%60) : '0'+Math.round(audio.currentTime%60) } / ${Math.round(audio.duration/60)} : ${Math.round(audio.duration%60) > 9 ? Math.round(audio.duration%60): '0' + Math.round(audio.duration%60) }`:null
+
     }
 
     let mouseDown = false;
@@ -144,10 +147,9 @@ const AudioPlayer = ({ songList, currentTrack, setCurrentTrack }) => {
                         </div>
                         <div className='volume-control'>
                             <span role='img' aria-label='volume'>&#128266;</span>
-                            <input ref={(input) => { volume = input }} type="range" name="volume" className="player__slider" min="0" max="1" step="0.05" value={audioState.volume} onChange={handleRangeUpdate} onMouseMove={handleRangeUpdate} />
-
+                            <input  type="range" name="volume" className="player__slider" min="0" max="1" step="0.05" value={audioState.volume} onChange={handleRangeUpdate} onMouseMove={handleRangeUpdate} />
+                            <p ref={input => { timer = input}}></p>
                         </div>
-
                     </div>
                 </div>
             </div>)
