@@ -46,7 +46,7 @@ Backend: It's a serverless CRUD web app, backend not required
 
 Database: Firebase
 
-Hosting: Netlify
+Deployed on: Netlify
 
 
 ## Instructions to run this project locally:
