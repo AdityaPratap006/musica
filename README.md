@@ -2,20 +2,30 @@
 Live Demo: 
 https://musica-web.netlify.com
 
-How To Use: 
+## How To Use: 
+
 1. The user can browse all the songs and play them online for free
+
 2. To purchase the song for getting the download link, the user will have to sign up or log in and then he/she can make the purchase
 
-Features:
+## Features:
+
 1.Authentication: Implemented using firebase authentication service
+
 2.Cart (or Wishlist): Where user can add songs he/she wishes to purchase
+
 3.Audio Player: The user can navigate through the playlist, seek to a specific timestamp in a song using the progress bar cum slider and       control the volume
+
 4.Payment gateway: Implemented using the React binding of Stripe Payment API (note: only frontend has been implemented, it doesn't process real payments)
+
 5.Account Page: Where user can view his/her information
 
-Tech Stack:
+## Tech Stack:
+
 Frontend: Reactjs, Redux (for state management) and React-Router (for routing)
+
 Backend: It's a serverless CRUD web app, backend not required
+
 Database: Firebase
 
 
@@ -26,6 +36,8 @@ NOTE: This project was bootstrapped with [Create React App](https://github.com/f
 ## Available Scripts
 
 Make sure you have Node 12.13.0 and Yarn 1.19.1 installed in your computer.
+
+
 In the project directory, you can run:
 
 ### `yarn start`
