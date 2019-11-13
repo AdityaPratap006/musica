@@ -64,7 +64,7 @@ class App extends React.Component {
 
     //This was used to automate the  creation of songs collection in firestore
     //createSongsCollection(songsList);
-    const songsCollectionRef = firestore.collection("songs");
+    const songsCollectionRef = firestore.collection("songs").orderBy("price", "desc");
 
         this.unsubscribeFromSnapshot = songsCollectionRef.onSnapshot(async snapshot => {
     
