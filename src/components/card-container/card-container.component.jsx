@@ -15,7 +15,9 @@ const CardContainer = ({songsList}) => {
                songsList.map((songObj,index) => <Card key={songObj.id} index={index} songObject={songObj}/>)
             }
         </div>
-        :<div style={{margin:'auto'}}>LOADING...</div>
+        :<div style={{margin:'auto'}}>
+            <div className='ring'></div>
+        </div>
     )
 }
 
