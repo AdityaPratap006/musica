@@ -1,6 +1,62 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Musica: An online music library web app
+Live Demo: 
+https://musica-web.netlify.com
+
+![alt text](https://firebasestorage.googleapis.com/v0/b/musica-d35e9.appspot.com/o/Project%20Screenshots%2Fhome.png?alt=media&token=fd60144d-5178-4b0c-a7f7-57940b12e687)
+
+## How To Use: 
+
+1. The user can browse all the songs and play them online for free
+
+2. To purchase the song for getting the download link, the user will have to sign up or log in and then he/she can make the purchase
+
+## Features:
+
+1.Authentication: Implemented using firebase authentication service
+
+![alt text](https://firebasestorage.googleapis.com/v0/b/musica-d35e9.appspot.com/o/Project%20Screenshots%2Fauthentication.png?alt=media&token=1e8613e5-9b94-4362-b3e2-f5dfe712ad31)
+
+![alt text](https://firebasestorage.googleapis.com/v0/b/musica-d35e9.appspot.com/o/Project%20Screenshots%2Fauthentication%202.png?alt=media&token=1cbd7dc8-7b08-468b-8550-0d961fc407d4)
+
+2.Cart (or Wishlist): Where user can add songs he/she wishes to purchase
+
+![alt text](https://firebasestorage.googleapis.com/v0/b/musica-d35e9.appspot.com/o/Project%20Screenshots%2Fcart.png?alt=media&token=0aa6e7e4-c421-491b-9923-405915f65a9c)
+
+![alt text](https://firebasestorage.googleapis.com/v0/b/musica-d35e9.appspot.com/o/Project%20Screenshots%2Fcheckout.png?alt=media&token=ddfc324a-77b0-4667-bb44-03c7d3ec9f04)
+
+3.Audio Player: The user can navigate through the playlist, seek to a specific timestamp in a song using the progress bar cum slider and       control the volume
+
+![alt text](https://firebasestorage.googleapis.com/v0/b/musica-d35e9.appspot.com/o/Project%20Screenshots%2Faudioplayer.png?alt=media&token=78a32b9b-44cf-4982-a5f3-63d3e3b8464a)
+
+![alt text](https://firebasestorage.googleapis.com/v0/b/musica-d35e9.appspot.com/o/Project%20Screenshots%2Faudioplayer-responsive.png?alt=media&token=52b25c43-7f05-4eb9-9aed-c6cfb95c10c1)
+
+4.Payment gateway: Implemented using the React binding of Stripe Payment API (note: only frontend has been implemented, it doesn't process real payments)
+
+![alt text](https://firebasestorage.googleapis.com/v0/b/musica-d35e9.appspot.com/o/Project%20Screenshots%2Fstripe.png?alt=media&token=cd6810f9-1c51-4efd-bb72-1ed98bb95dbf)
+
+5.Account Page: Where user can view his/her information
+
+![alt text](https://firebasestorage.googleapis.com/v0/b/musica-d35e9.appspot.com/o/Project%20Screenshots%2Faccount.png?alt=media&token=8cc22886-56e5-4ff7-a320-bde1cd46c561)
+
+## Tech Stack:
+
+Frontend: Reactjs, Redux (for state management) and React-Router (for routing)
+
+Backend: It's a serverless CRUD web app, backend not required
+
+Database: Firebase
+
+Deployed on: Netlify
+
+
+## Instructions to run this project locally:
+
+NOTE: This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
+
+Make sure you have Node 12.13.0 and Yarn 1.19.1 installed in your computer.
+
 
 In the project directory, you can run:
 
