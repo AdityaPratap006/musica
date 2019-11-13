@@ -47,7 +47,12 @@ const AudioPlayer = ({ songList, currentTrack, setCurrentTrack }) => {
         const percent = (audio.currentTime / audio.duration) * 100;
 
         progressBar.style.flexBasis = `${percent}%`;
-        timer.textContent = audio.duration ? `${Math.round(audio.currentTime/60)} : ${Math.round(audio.currentTime%60) > 9 ? Math.round(audio.currentTime%60) : '0'+Math.round(audio.currentTime%60) } / ${Math.round(audio.duration/60)} : ${Math.round(audio.duration%60) > 9 ? Math.round(audio.duration%60): '0' + Math.round(audio.duration%60) }`:null
+
+        const currentMin = Math.floor(Math.round(audio.currentTime)/60);
+        const currentSec =Math.round(audio.currentTime)- currentMin*60;
+        const totalMin =  Math.floor(Math.round(audio.duration)/60);
+        const totalSec = Math.round(audio.duration) - totalMin*60;
+        timer.textContent = audio.duration?  `${currentMin} : ${currentSec>9? currentSec : '0' + currentSec} / ${totalMin} : ${ totalSec>9 ? totalSec : '0' + totalSec}`:null;
 
     }
 
