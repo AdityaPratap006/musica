@@ -1,3 +1,6 @@
+## Musica: An online music library web app
+Live Demo: https://musica-web.netlify.com
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
