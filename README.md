@@ -12,6 +12,10 @@ https://musica-web.netlify.com
 
 1.Authentication: Implemented using firebase authentication service
 
+![alt text](https://firebasestorage.googleapis.com/v0/b/musica-d35e9.appspot.com/o/Project%20Screenshots%2Fauthentication.png?alt=media&token=1e8613e5-9b94-4362-b3e2-f5dfe712ad31)
+
+![alt text](https://firebasestorage.googleapis.com/v0/b/musica-d35e9.appspot.com/o/Project%20Screenshots%2Fauthentication%202.png?alt=media&token=1cbd7dc8-7b08-468b-8550-0d961fc407d4)
+
 2.Cart (or Wishlist): Where user can add songs he/she wishes to purchase
 
 3.Audio Player: The user can navigate through the playlist, seek to a specific timestamp in a song using the progress bar cum slider and       control the volume
@@ -28,8 +32,10 @@ Backend: It's a serverless CRUD web app, backend not required
 
 Database: Firebase
 
+Hosting: Netlify
 
-Instructions to run this project locally:
+
+## Instructions to run this project locally:
 
 NOTE: This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
