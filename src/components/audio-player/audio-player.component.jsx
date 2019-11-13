@@ -59,7 +59,7 @@ const AudioPlayer = ({ songList, currentTrack, setCurrentTrack }) => {
     return (
         currentTrack !== null && currentTrack >= 0 ?
             (<div className='audio-player' >
-                <div className='close-player'>
+                <div className='close-player' onClick={() => {setCurrentTrack(null)}}>
                     ✖
                 </div>
                 <audio src={url}

@@ -13,7 +13,7 @@
   align-items: center;
   box-shadow: 16px 0 40px 0 rgba(0, 0, 0, 0.4);
   border-top: 1px solid white;
-  
+   
 
   @keyframes riseFromBelow {
     from {
@@ -35,6 +35,7 @@
       position: fixed;
       right: 20px;
       bottom:9rem;
+      cursor: pointer;
   }
 
   .song-image {
