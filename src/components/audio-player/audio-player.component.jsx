@@ -59,6 +59,9 @@ const AudioPlayer = ({ songList, currentTrack, setCurrentTrack }) => {
     return (
         currentTrack !== null && currentTrack >= 0 ?
             (<div className='audio-player' >
+                <div className='close-player'>
+                    ✖
+                </div>
                 <audio src={url}
                     ref={(input) => { audio = input; }}
                     autoPlay
@@ -86,16 +89,12 @@ const AudioPlayer = ({ songList, currentTrack, setCurrentTrack }) => {
                                                 <small>{artists}</small>
                                             </div></>
                                     )
-                                    : null
+                                    : ( <>
+                                        <p>{song}</p>
+                                        <small>{artists}</small>
+                                        </>)
                             }
-                            { 
-                                 window.innerWidth > 720 ?
-                                ( <>
-                                 <p>{song}</p>
-                                 <small>{artists}</small>
-                                 </>)
-                                 :null
-                            }
+                            
 
                         </div>
 
